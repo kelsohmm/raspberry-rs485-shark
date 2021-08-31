@@ -1,7 +1,7 @@
 import click
 import serial.rs485
 
-@click.command
+@click.command()
 @click.option('--port', type=str, default='/dev/ttyAMA0')
 @click.option('--baudrate', type=int, default=9600)
 def run(port, baudrate):
