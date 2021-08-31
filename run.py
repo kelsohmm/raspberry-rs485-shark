@@ -1,5 +1,8 @@
+import logging
 import click
 import serial.rs485
+
+logging.basicConfig(level=logging.INFO, format='%(levelname)s %(name)s %(asctime)s -- %(message)s')
 
 @click.command()
 @click.option('--port', type=str, default='/dev/ttyAMA0')
@@ -17,9 +20,9 @@ def run(port, baudrate):
   ser.rs485_mode = serial.rs485.RS485Settings()
 
   while True:
-      c = ser.read(1)
-      ser.write(c)
-      print(c, end='')
+      c = [int(x) for x in ser.read(20)]
+      if c:
+        logging.info(str(c))
 
 if __name__ == '__main__':
   run()
