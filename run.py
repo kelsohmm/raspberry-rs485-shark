@@ -8,6 +8,8 @@ logging.basicConfig(level=logging.INFO, format='%(levelname)s %(name)s %(asctime
 @click.option('--port', type=str, default='/dev/ttyAMA0')
 @click.option('--baudrate', type=int, default=9600)
 def run(port, baudrate):
+  logging.info(f'Starting RS-485 shark...')
+  
   ser = serial.rs485.RS485(
       port=port,
       baudrate=baudrate,
